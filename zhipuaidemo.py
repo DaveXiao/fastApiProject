@@ -2,7 +2,7 @@
 
 from zhipuai import ZhipuAI
 
-client = ZhipuAI(api_key="7aff1e84cbcb40fae39e9c9b26b0eaf1.pCphcL3iLtjKPywP")
+client = ZhipuAI(api_key="7aff1e84cbcb40fae39e9c9b26b0eaf1.xxxxxxx")
 
 response = client.chat.completions.create(
     model="glm-4",
