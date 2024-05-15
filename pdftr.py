@@ -1,14 +1,16 @@
 import gradio as gr
 import pdfplumber
 from zhipuai import ZhipuAI
+from config import API_KEY
 
 
-def translate_pdf(pdf_file, tranfer_style, source_lang, target_lang):
+def translate_pdf(pdf_file, num_pages, tranfer_style, source_lang, target_lang):
+    page_idx = int(num_pages)
     with pdfplumber.open(pdf_file) as pdf:
         pages = pdf.pages
-        p1_text = pages[2].extract_text()
+        p1_text = pages[page_idx].extract_text(layout=True)
 
-    client = ZhipuAI(api_key="7aff1e84cbcb40fae39e9c9b26b0eaf1.xxxxxxx")
+    client = ZhipuAI(api_key=API_KEY)
 
     response = client.chat.completions.create(
         model="glm-4",
@@ -35,6 +37,7 @@ def launch_gradio():
         title="OpenAI-Translator v2.0(PDF 电子书翻译工具)",
         inputs=[
             gr.File(label="上传PDF文件"),
+            gr.Textbox(label="页码（默认：1）", placeholder="1", value="1"),
             gr.Textbox(label="翻译风格（默认：小说）", placeholder="小说", value="小说"),
             gr.Textbox(label="源语言（默认：英文）", placeholder="English", value="English"),
             gr.Textbox(label="目标语言（默认：中文）", placeholder="Chinese", value="Chinese")
@@ -50,4 +53,6 @@ def launch_gradio():
 
 
 if __name__ == "__main__":
+    # file = "The_Old_Man_of_the_Sea.pdf"
     launch_gradio()
+    # translate_pdf(file)
