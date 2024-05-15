@@ -30,8 +30,8 @@ user_meta = CharacterMeta(bot_name="刘备", bot_info=user_appearance, user_name
 # 初始化对话消息列表
 messages = []
 
-# 添加巫师的第一个消息作为起始点
-messages.append(TextMsg(role="user", content="汉室倾颓，奸臣窃命，主上蒙尘", meta=user_meta))
+# 添加第一个消息作为起始点
+messages.append(TextMsg(role="system", content="隆中对三国时期的重要战略对话。请根据给定的上下文，生成回复。"))
 
 # 模拟对话，交替生成回复
 for i in range(10):  # 假设生成5轮对话
