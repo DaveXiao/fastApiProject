@@ -31,7 +31,7 @@ user_meta = CharacterMeta(bot_name="刘备", bot_info=user_appearance, user_name
 messages = []
 
 # 添加第一个消息作为起始点
-messages.append(TextMsg(role="system", content="隆中对三国时期的重要战略对话。请根据给定的上下文，生成回复。"))
+messages.append(TextMsg(role="user", content="隆中对，三国时期的重要战略对话。请根据给定的上下文，生成回复。"))
 
 # 模拟对话，交替生成回复
 for i in range(10):  # 假设生成5轮对话
@@ -52,7 +52,6 @@ for i in range(10):  # 假设生成5轮对话
 
 
 # 将对话保存到文件
-# 将对话保存到文件
 def save_to_file(data, filename):
     with open(filename, 'w', encoding='utf-8') as file:
         for msg in data:
@@ -62,6 +61,6 @@ def save_to_file(data, filename):
                 file.write(f"{msg['meta']['bot_name']}: {msg['content']}\n")
 
 # 保存对话到文件
-save_to_file(messages, "dialogue_history_01.txt")
+save_to_file(messages[1:], "dialogue_history_01.txt")
 
 print("对话已生成并保存到文件中。")
