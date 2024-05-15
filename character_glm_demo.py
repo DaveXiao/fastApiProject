@@ -18,13 +18,6 @@ liu_bei_appearance = next(role_appearance_gen)
 # 假设我们从生成器中获取了第二个结果作为诸葛亮的角色人设
 zhuge_liang_appearance = next(role_appearance_gen)
 
-# # 角色人设文本
-# role_profile_1 = "勇敢的骑士，穿着闪亮的盔甲。"
-# role_profile_2 = "聪明的巫师，拥有丰富的知识和强大的魔法。"
-#
-# # 使用generate_role_appearance生成角色人设
-# bot_appearance_gen = generate_role_appearance(role_profile_1)
-# user_appearance_gen = generate_role_appearance(role_profile_2)
 
 # 假设我们从生成器中获取了第一个结果作为人设描述
 bot_appearance = liu_bei_appearance
