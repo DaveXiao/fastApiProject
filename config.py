@@ -1,1 +1,2 @@
-API_KEY="7aff1e84cbcb40fae39e9c9b26b0eaf1.xxxxxx"
+# config.py
+API_KEY = "5f1925f156b1eccc74399a0472d0fa1c.wLH5WwBQTV6d8KcM"
