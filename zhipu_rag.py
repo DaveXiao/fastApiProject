@@ -67,6 +67,7 @@ def get_completion(prompt, model="glm-4-flash"):
             {"role": "user", "content": prompt}
         ],
         temperature=0.8,
+        stream=True,
     )
     return response.choices[0].message.content
 
@@ -356,22 +357,22 @@ def bot_response(user_query, chat_history):
 
 if __name__ == '__main__':
     # 混合检索
-    query = "how safe is llama 2?"
-    documents = [
-        "玛丽患有肺癌，癌细胞已转移",
-        "刘某肺癌I期",
-        "张某经诊断为非小细胞肺癌III期",
-        "小细胞肺癌是肺癌的一种"
-    ]
+    # query = "how safe is llama 2?"
+    # documents = [
+    #     "玛丽患有肺癌，癌细胞已转移",
+    #     "刘某肺癌I期",
+    #     "张某经诊断为非小细胞肺癌III期",
+    #     "小细胞肺癌是肺癌的一种"
+    # ]
+    #
+    # query_vec = get_embeddings([query])[0]
+    # doc_vecs = get_embeddings(documents)
+    #
+    # print("Cosine distance:")
+    # for vec in doc_vecs:
+    #     print(cos_sim(query_vec, vec))
 
-    query_vec = get_embeddings([query])[0]
-    doc_vecs = get_embeddings(documents)
-
-    print("Cosine distance:")
-    for vec in doc_vecs:
-        print(cos_sim(query_vec, vec))
-
-    #--------------------------------------------------------------------------------------
+    # --------------------------------------------------------------------------------------
     # user_query = "how safe is llama 2?"
     # # user_query = "llama 2都有哪些参数？"
     # search_results = vector_db.search(user_query, 5)
@@ -387,14 +388,16 @@ if __name__ == '__main__':
     # for score, doc in sorted_list:
     #     print(f"{score}\t{doc}\n")
 
-    #------------------------------------------------------------------------------------------
-    # for doc in search_results['documents'][0]:
-    #     print(doc + "\n")
+    # ------------------------------------------------------------------------------------------
+    user_query = "llama 2都有哪些参数？"
+    search_results = vector_db.search(user_query, 5)
+    for doc in search_results['documents'][0]:
+        print(doc + "\n")
 
-    # response = rag_bot.chat(user_query)
-    # print("====回复====")
-    # print(response)
-
+    response = rag_bot.chat(user_query)
+    print("====回复====")
+    print(response)
+    # --------------------------------------------------------------------------------------------
     # with gr.Blocks() as demo:
     #     chatbot = gr.Chatbot()  # 创建聊天机器人组件
     #     message = gr.Textbox(label="用户输入")  # 用户输入框
@@ -403,6 +406,7 @@ if __name__ == '__main__':
     #     message.submit(bot_response, [message, chatbot], [message, chatbot])
     #
     # demo.launch()
+    # --------------------------------------------------------------------------------------------
 
     #
     # user_query = "llama2有多少参数？"
@@ -410,9 +414,10 @@ if __name__ == '__main__':
     # #
     # for para in results["documents"][0]:
     #     print(para + "\n")
-
+    #
     # prompt = build_prompt(prompt_template, context=paragraphs, query="llama2是什么？")
     # print(get_completion(prompt))
+    # --------------------------------------------------------------------------------------------
     # 测试向量模型
     # test_query = ["测试文本"]
     # vec = get_embeddings(test_query)[0]
